@@ -1,0 +1,185 @@
+html, body{
+    height: 100%;
+}
+
+body{
+    background-color: rgb(247, 250, 252);
+    text-align: center;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+}
+
+.login-body{
+    height: 100%;
+    margin: 0 auto;
+    min-height: 720px;
+}
+
+.login-body .login-body-main{
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
+    min-height: 590px;
+    margin:0 auto;
+}
+
+.login-body::before{
+    height: 100%;
+    vertical-align: middle;
+    content: "";
+    display: inline-block;
+    margin-right: -0.25em;
+}
+
+.login-body-main h2{
+    font-weight: normal;
+    font-size: 18px;
+    color: rgb(85, 85, 85);
+}
+
+.login-body-main .tab-button{
+    border: none;
+    background-color: rgb(247, 250, 252);
+    font-size: inherit;
+    font-family: inherit;
+    width: 4em;
+    font-size: 18px;
+    outline: none;
+    color: rgb(135, 136, 137);
+}
+
+.tab-button:hover{
+    color: rgb(85, 85, 85);
+    cursor: pointer;
+}
+
+.login-body-main .active{
+    color: rgb(15, 136, 235);
+}
+
+span.tab_slider{
+    background-color: rgb(15, 136, 235);
+    left: 0;
+    width: 50%;
+    height: 2px;
+    display: block;
+    position: relative;
+    transition: .15s ease-in;
+    -webkit-transition: .15s ease-in;
+}
+
+.login-body-main .view-signup, .view-signin{
+    font-size: 14px;
+}
+
+form.login-info{
+    margin-top: 0.2em;
+    display: block;
+    text-align: left;
+}
+
+.view-signup .inputs{
+    padding: 1px, 0;
+    border-radius: 3px;
+    border: 1px solid rgb(213, 213, 213);
+    width: 100%;
+}
+
+.inputs .single-input{
+    position: relative;
+}
+
+.inputs label.error{
+    color: rgb(204, 51, 51);
+    padding: 0 8px;
+    top: 0;
+    right: 8px;
+    line-height: 48px;
+    cursor: text;
+    position: absolute;
+    visibility: hidden;
+}
+
+.inputs input{
+    padding: 1em 0.8em;
+    box-sizing: border-box;
+    width: 100%;
+    font-size: 14px;
+    border: none;
+}
+
+.inputs input:focus{
+    background: #fff;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+
+.inputs input.bottom-input{
+    border-top-color: rgb(232, 232, 232);
+    border-top-width: 1px;
+    border-top-style: solid;
+}
+
+.view-signup button.sign-btn{
+    margin-top: 18px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 41px;
+    background-color: rgb(15, 136, 235);
+    border-width: 0;
+    border-radius: 3px;
+    color: #fff;
+    width: 100%;
+}
+
+.view-signup .sign-btn:hover, .view-signup .sign-btn:focus{
+    background-color: rgb(85, 171, 237);
+    cursor: pointer;
+}
+
+.view-signup .agreement{
+    color: rgb(153, 153, 153);
+    font-size: 13px;
+    margin-top: 21px;
+}
+
+.agreement a{
+    color: rgb(105, 142, 191);
+    text-decoration: none;
+}
+
+.view-signup .QRCode{
+    margin-top: 48px;
+    position: relative;
+}
+
+.QRCode button{
+    font: inherit;
+    width: 100%;
+    border: 1px solid rgb(150, 194, 233);
+    border-radius: 3px;
+    background-color: #fff;
+    outline: none;
+    line-height: 39px;
+    cursor: pointer;
+    color: rgb(95, 166, 229);
+}
+
+.QRCode .QRCode-card{
+    position: absolute;
+    display: none;
+    bottom: 68px;
+    border-radius: 10px;
+    left: -5px;
+    width: 310px;
+    height: 310px;
+    background-color: white;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .15);
+}
+
+.footer
+{
+    position: inherit;
+    text-align: center;
+    font: inherit;
+}
