@@ -59,6 +59,13 @@ header li.topnav {
     width: 54px;
 }
 
+.topnav a{
+	color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font: inherit;
+}
+
 header .self {
     float: right;
     height: 100%;
@@ -118,7 +125,7 @@ label.taglabel {
     border: 1px solid rgb(4, 91, 178);
     border-image: none;
     top: 0px;
-    width: 50px;
+    width: 50 px;
     height: 100%;
     right: 0px;
     position: absolute;
@@ -128,4 +135,70 @@ label.taglabel {
     border-bottom-right-radius: 4px;
     box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px 1px 1px rgba(255,255,255,0.15);
     color: white;
+}
+
+.admin-user-block {
+	text-align: left;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
+    border-bottom: 1px solid #E1E4E8 !important;
+    font-family:inherit;
+}
+
+.admin-user-block .title {
+    display: inline-block;
+    margin-bottom: 4px !important;
+    box-sizing: border-box;
+}
+
+.title h2 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+.admin-user-block .follow,
+.float-right {
+    float: right;
+}
+
+.admin-user-block .follow button {
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #24292E;
+    background-color: #EFF3F6;
+    background-image: linear-gradient(-180deg, #FAFBFC 0%, #EFF3F6 90%);
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-repeat: repeat-x;
+    background-position: -1px -1px;
+    background-size: 110% 110%;
+    border: 1px solid rgba(27, 31, 35, 0.2);
+    border-radius: 0.25em;
+    -moz-appearance: none;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    
+}
+
+.admin-user-block .introdction {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+}
+
+.introdction p {
+    display: inline-block !important;
+    padding-right: 24px !important;
+    color: #586069 !important;
+    width: 75%;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.admin-user-block .tags {
+    font-size: 12px !important;
+    margin-top: 8px !important;
 }

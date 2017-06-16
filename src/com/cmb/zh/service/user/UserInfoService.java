@@ -25,6 +25,7 @@ public class UserInfoService {
 		
 		if (userId != null) {
 			userInfo = userInfoDao.selectByPrimaryKey(userId);
+			System.out.println(userInfo);
 		}
 		
 		return userInfo;
@@ -63,4 +64,9 @@ public class UserInfoService {
 		
 		return error;
 	}
+//	
+//	public static void main(String[] args){
+//		UserInfoService usr = new UserInfoService();
+//		System.out.println(usr.getUserInfoByUserId(new BigDecimal(11) ));
+//	}
 }

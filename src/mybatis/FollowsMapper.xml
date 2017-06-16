@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cmb.zh.dao.FollowsMapper" >
+  <resultMap id="BaseResultMap" type="com.cmb.zh.domain.Follows" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="USERID" property="userid" jdbcType="DECIMAL" />
+    <result column="FOLLOW" property="follow" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USERID, FOLLOW
+  </sql>
+  
+  <delete id="deleteFollow" parameterType="com.cmb.zh.domain.Follows">
+  	delete from FOLLOWS where
+  	USERID = #{userid,jdbcType=DECIMAL}
+  	AND
+  	FOLLOWS = #{follow,jdbcType=DECIMAL}
+  </delete>
+  
+  <select id="findNotFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  	select * from ZHUSER where USERID not in (select follow from FOLLOWS where userid = #{follow, jdbcType=DECIMAL})
+  </select>
+  
+  <select id="findFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  	select * from ZHUSER where USERID in (select follow from FOLLOWS where userid = #{follow, jdbcType=DECIMAL})
+  </select>
+  
+  <select id="findFollowers" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  	select * from ZHUSER where USERID in (select userid from FOLLOWS where follow = #{follow, jdbcType=DECIMAL})
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from FOLLOWS
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from FOLLOWS
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.cmb.zh.domain.Follows" >
+    insert into FOLLOWS (ID, USERID, FOLLOW
+      )
+    values (#{id,jdbcType=DECIMAL}, #{userid,jdbcType=DECIMAL}, #{follow,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cmb.zh.domain.Follows" >
+    insert into FOLLOWS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userid != null" >
+        USERID,
+      </if>
+      <if test="follow != null" >
+        FOLLOW,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="follow != null" >
+        #{follow,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cmb.zh.domain.Follows" >
+    update FOLLOWS
+    <set >
+      <if test="userid != null" >
+        USERID = #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="follow != null" >
+        FOLLOW = #{follow,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cmb.zh.domain.Follows" >
+    update FOLLOWS
+    set USERID = #{userid,jdbcType=DECIMAL},
+      FOLLOW = #{follow,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

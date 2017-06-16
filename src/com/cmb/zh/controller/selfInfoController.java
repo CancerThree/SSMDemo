@@ -29,7 +29,7 @@ public class selfInfoController {
 		ModelAndView mad = null;
 		
 		if (thisUser != null) {
-			mad = new ModelAndView("selfIndex");
+			mad = new ModelAndView("myProfile");
 			UserInfo userInfo = usrInfoService.getUserInfoByUserId(thisUser.getUserid());
 			mad.addObject("userInfo", userInfo);
 		}
