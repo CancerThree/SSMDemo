@@ -16,6 +16,7 @@ import com.cmb.zh.Util.CommonVal.ErrorCode;
 import com.cmb.zh.dao.FollowsDao;
 import com.cmb.zh.dao.UserDao;
 import com.cmb.zh.dao.UserInfoDao;
+import com.cmb.zh.domain.Follows;
 import com.cmb.zh.domain.User;
 import com.cmb.zh.domain.UserInfo;
 
@@ -146,6 +147,47 @@ public class UserAdminService {
 			
 			return users;
 		} catch (Exception e) {
+			throw new CommonException(ErrorCode.ERROR_WRITEDB_FAIL, e);
+		}
+	}
+	
+	@Transactional(rollbackFor = CommonException.class)
+	public int getFollowsCount(BigDecimal userid, BigDecimal follow) throws CommonException {
+		if (userid == null || follow == null) {
+			throw new CommonException(ErrorCode.ERROR_PARAM_INVALID);
+		}
+		
+		try {
+			return followsDao.getFollowRelationCount(userid, follow);
+		} catch(Exception e) {
+			System.out.println(e);
+			throw new CommonException(ErrorCode.ERROR_WRITEDB_FAIL, e);
+		}
+	}
+	
+	@Transactional(rollbackFor = CommonException.class)
+	public int followUser(Follows follow) throws CommonException {
+		if (follow == null || follow.getUserid() == null || follow.getFollow() == null) {
+			throw new CommonException(ErrorCode.ERROR_PARAM_INVALID);
+		}
+		
+		try {
+			return followsDao.insertSelective(follow);
+		} catch (Exception e) {
+			System.out.println(e);
+			throw new CommonException(ErrorCode.ERROR_WRITEDB_FAIL, e);
+		}
+	}
+	
+	public int unFollowUser(Follows follow) throws CommonException {
+		if (follow == null || follow.getUserid() == null || follow.getFollow() == null) {
+			throw new CommonException(ErrorCode.ERROR_PARAM_INVALID);
+		}
+		
+		try {
+			return followsDao.deleteFollow(follow);
+		} catch (Exception e) {
+			System.out.println(e);
 			throw new CommonException(ErrorCode.ERROR_WRITEDB_FAIL, e);
 		}
 	}

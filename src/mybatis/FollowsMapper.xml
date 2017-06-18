@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cmb.zh.dao.FollowsMapper" >
+<mapper namespace="com.cmb.zh.dao.FollowsDao" >
   <resultMap id="BaseResultMap" type="com.cmb.zh.domain.Follows" >
     <id column="ID" property="id" jdbcType="DECIMAL" />
     <result column="USERID" property="userid" jdbcType="DECIMAL" />
@@ -14,18 +14,22 @@
   	delete from FOLLOWS where
   	USERID = #{userid,jdbcType=DECIMAL}
   	AND
-  	FOLLOWS = #{follow,jdbcType=DECIMAL}
+  	FOLLOW = #{follow,jdbcType=DECIMAL}
   </delete>
   
-  <select id="findNotFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  <select id="getFollowRelationCount" resultType="int">
+  	select count(*) from FOLLOWS where userid=#{userid} AND follow = #{follow}
+  </select>
+  
+  <select id="findNotFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.User">
   	select * from ZHUSER where USERID not in (select follow from FOLLOWS where userid = #{follow, jdbcType=DECIMAL})
   </select>
   
-  <select id="findFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  <select id="findFollowings" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.User">
   	select * from ZHUSER where USERID in (select follow from FOLLOWS where userid = #{follow, jdbcType=DECIMAL})
   </select>
   
-  <select id="findFollowers" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.Follows">
+  <select id="findFollowers" parameterType="java.math.BigDecimal" resultType="com.cmb.zh.domain.User">
   	select * from ZHUSER where USERID in (select userid from FOLLOWS where follow = #{follow, jdbcType=DECIMAL})
   </select>
   

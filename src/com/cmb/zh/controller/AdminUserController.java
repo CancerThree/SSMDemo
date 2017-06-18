@@ -1,7 +1,9 @@
 package com.cmb.zh.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -25,29 +27,42 @@ public class AdminUserController {
 	
 	@RequestMapping("/searchUser")
 //	@ResponseBody
-	public ModelAndView adminUser(String name){
+	public ModelAndView adminUser(String name, HttpSession session){
 //		System.out.println("session is " + session);
 //		User thisUser = (User) session.getAttribute(CommonVal.SESSION_KEY_USER);
 //		boolean isOnline = (boolean) session.getAttribute(CommonVal.SESSION_KEY_ONLINE);
 		ModelAndView mad = new ModelAndView("searchUser");
+		User thisUser = (User) session.getAttribute(CommonVal.SESSION_KEY_USER);
 		System.out.println("name is " + name);
 //		if(thisUser != null){
 //			session.removeAttribute(CommonVal.SESSION_KEY_USER);
 //			session.removeAttribute(CommonVal.SESSION_KEY_ONLINE);
 //		}
-		HashMap<User, UserInfo> users = null;
+		HashMap<User, UserInfo> users = new HashMap<User, UserInfo>();
+		HashMap<BigDecimal, Integer> isFollow = new HashMap<BigDecimal, Integer>();
 		
-		try {
-			users = userAdminService.getUsersAndInfo(name);
-		} catch (CommonException e) {
-			System.out.print(e.getErrorCode());
-			e.printStackTrace();
+		if (thisUser != null) {
+			try {
+				users = userAdminService.getUsersAndInfo(name);
+				for (Entry<User, UserInfo> entry : users.entrySet()) {
+					User key = entry.getKey();
+					Integer hasFollow = 0;
+					hasFollow = userAdminService.getFollowsCount(thisUser.getUserid(), key.getUserid());
+					if (thisUser.getUserid() == key.getUserid()) {
+						hasFollow = 0;
+					}
+					isFollow.put(key.getUserid(), hasFollow);
+				}
+			} catch (CommonException e) {
+				System.out.print(e.getErrorCode());
+				e.printStackTrace();
+			}
 		}
-		
 //		ArrayList<User> users = userAdminService.SearchUser(name);
 //		users = users == null ? new ArrayList<User>() : users;
 		
 		mad.addObject("users", users);
+		mad.addObject("isFollow", isFollow);
 		
 		return mad;
 	}

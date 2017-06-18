@@ -203,7 +203,7 @@ function register() {
             $("#register_form").serialize(),
             function(data) {
                 if (data.errorCode == 0) {
-                    location.href = "/ZHWebApp/explore/selfIndex";
+                    location.href = "/ZHWebApp/myInfo/";
                 } else {
                     alert("errorCode" + data.errorCode);
                 }
@@ -218,7 +218,7 @@ function login() {
             $("#login_form").serialize(),
             function(data) {
                 if (data.errorCode == 0) {
-                    location.href = "/ZHWebApp/explore/selfIndex";
+                    location.href = "/ZHWebApp/myInfo/";
                 } else {
                     alert("errorCOde" + data.errorInfo);
                 }

@@ -7,6 +7,18 @@
     <result column="USERNAME" property="username" jdbcType="VARCHAR" />
     <result column="PWD" property="pwd" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap type="com.cmb.zh.domain.User" id="UserInfoResultMap">
+  	<id column="USERID" property="userid" jdbcType="DECIMAL" />
+  	<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+  	<association property="userInfo" javaType="com.cmb.zh.domain.UserInfo">
+  		<id column="USERID" property="userid" jdbcType="VARCHAR"/>
+  		<result column="SELFINTRO" property="selfintro" jdbcType="VARCHAR" />
+    	<result column="COMPANY" property="company" jdbcType="VARCHAR" />
+    	<result column="TAG" property="tag" jdbcType="VARCHAR" />
+  	</association>
+  </resultMap>
+  
   <sql id="Base_Column_List" >
     USERID, EMAIL, USERNAME, PWD
   </sql>

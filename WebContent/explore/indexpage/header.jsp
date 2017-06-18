@@ -8,7 +8,7 @@
             <div class="navtag">
                 <ul class="navul">
                     <li class="topnav"><a href="#">首页</a></li>
-                    <li class="topnav"><a href="<%= request.getContextPath()%>/explore/selfIndex ">我的</a></li>
+                    <li class="topnav"><a href="<%= request.getContextPath()%>/myInfo/ ">我的</a></li>
                 </ul>
             </div>
             <div class="top-search">
